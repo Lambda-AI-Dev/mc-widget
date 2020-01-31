@@ -1,9 +1,12 @@
 import React from "react";
-import { Button, Icon, Typography, Row, Col } from "antd";
+import ImageIcon from "./ImageIcon";
+import { Button, Typography, Icon } from "antd";
 
-const { Title, Paragraph } = Typography;
+const { Title } = Typography;
 
 const Widget = ({ setWidgetOn }) => {
+  const testImg =
+    "https://images.unsplash.com/photo-1519098901909-b1553a1190af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80";
   return (
     <div
       style={{
@@ -34,48 +37,66 @@ const Widget = ({ setWidgetOn }) => {
           <Button
             icon="close"
             shape="circle"
-            style={{ margin: "20px" }}
+            style={{ marginTop: "20px", marginRight: "20px" }}
             onClick={() => {
               setWidgetOn(false);
             }}
           />
         </div>
-        <Title level={1}>Lambda AI Widget</Title>
-        <Paragraph>Select all the images that contain coffee cups.</Paragraph>
-        <div style={{ margin: "40px 10vw 40px" }}>
-          <Row gutter={[8, 16]}>
-            <Col span={8}>
-              <h1>Column 1</h1>
-            </Col>
-            <Col span={8}>
-              <h1>Column 1</h1>
-            </Col>
-            <Col span={8}>
-              <h1>Column 1</h1>
-            </Col>
-          </Row>
-          <Row gutter={[8, 16]}>
-            <Col span={8}>
-              <h1>Column 1</h1>
-            </Col>
-            <Col span={8}>
-              <h1>Column 1</h1>
-            </Col>
-            <Col span={8}>
-              <h1>Column 1</h1>
-            </Col>
-          </Row>
-          <Row gutter={[8, 16]}>
-            <Col span={8}>
-              <h1>Column 1</h1>
-            </Col>
-            <Col span={8}>
-              <h1>Column 1</h1>
-            </Col>
-            <Col span={8}>
-              <h1>Column 1</h1>
-            </Col>
-          </Row>
+        <div style={{ margin: "20px" }}>
+          <Title level={2}>
+            Select all the images that contain coffee cups
+          </Title>
+
+          <center style={{ marginTop: "5vh" }}>
+            <table>
+              <tr>
+                <td>
+                  <ImageIcon url={testImg} />
+                </td>
+                <td>
+                  <ImageIcon url={testImg} />
+                </td>
+                <td>
+                  <ImageIcon url={testImg} />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <ImageIcon url={testImg} />
+                </td>
+                <td>
+                  <ImageIcon url={testImg} />
+                </td>
+                <td>
+                  <ImageIcon url={testImg} />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <ImageIcon url={testImg} />
+                </td>
+                <td>
+                  <ImageIcon url={testImg} />
+                </td>
+                <td>
+                  <ImageIcon url={testImg} />
+                </td>
+              </tr>
+            </table>
+          </center>
+          <div>
+            <Button
+              type="primary"
+              style={{
+                marginTop: "5vh",
+                width: "150px",
+                height: "45px"
+              }}
+            >
+              Submit
+            </Button>
+          </div>
         </div>
       </div>
     </div>
