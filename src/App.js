@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "antd/dist/antd.css";
+import { Typography, Button } from "antd";
+
+import Widget from "./lambda-ai/Widget";
+
+const { Title, Text } = Typography;
 
 function App() {
+  const [widgetOn, setWidgetOn] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ margin: "10vh", textAlign: "center" }}>
+      <Title level={1}>My really fun game!</Title>
+      <Text>Click on the below to activate Lambda AI Widget</Text>
+      <br />
+      <Button
+        type="primary"
+        style={{ margin: "20px" }}
+        onClick={() => {
+          setWidgetOn(true);
+        }}
+      >
+        Click me
+      </Button>
+      {widgetOn ? <Widget setWidgetOn={setWidgetOn} /> : null}
     </div>
   );
 }
