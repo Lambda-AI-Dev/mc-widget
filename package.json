@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@lottiefiles/lottie-player": "^0.3.0-rc2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "antd": "^3.26.7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-lottie": "^1.2.3",
     "react-scripts": "3.3.0"
   },
   "scripts": {

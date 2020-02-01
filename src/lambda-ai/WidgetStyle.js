@@ -32,6 +32,15 @@ const style = {
     marginLeft: "-150px",
     bottom: "10px",
     left: "50%"
+  },
+  successAnimation: {
+    height: "120px",
+    width: "120px",
+    position: "absolute",
+    marginLeft: "-60px",
+    marginTop: "-60px",
+    top: "50%",
+    left: "50%"
   }
 };
 
