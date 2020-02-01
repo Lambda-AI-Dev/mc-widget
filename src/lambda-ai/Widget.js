@@ -34,7 +34,7 @@ const style = {
 };
 const Widget = () => {
   // settings
-  const DISPLAY_TIME = 30;
+  const DISPLAY_TIME = 30 * 10;
   const MULTIPLY_FACTOR = 100.0 / DISPLAY_TIME;
   const testImg =
     "https://images.unsplash.com/photo-1519098901909-b1553a1190af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80";
@@ -44,13 +44,13 @@ const Widget = () => {
   let [showWidget, setShowWidget] = useState(true);
 
   useEffect(() => {
-    var newYearCountdown = setInterval(function() {
+    var countDown = setInterval(() => {
       setTimer(timer--);
       if (timer === 0) {
         setShowWidget(false);
-        clearInterval(newYearCountdown);
+        clearInterval(countDown);
       }
-    }, 1000);
+    }, 100);
   }, []);
 
   return (
