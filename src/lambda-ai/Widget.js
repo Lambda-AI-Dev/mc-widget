@@ -1,9 +1,37 @@
 import React, { useState, useEffect } from "react";
 import ImageIcon from "./ImageIcon";
 import { Button, Typography, Progress } from "antd";
+const { Title, Paragraph } = Typography;
 
-const { Title } = Typography;
-
+const style = {
+  background: {
+    position: "fixed",
+    width: "100%",
+    height: "100%",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    margin: "auto",
+    backgroundColor: "rgba(0, 0, 0, 0.5)"
+  },
+  foreground: {
+    position: "absolute",
+    left: "10%",
+    right: "10%",
+    top: "10%",
+    bottom: "10%",
+    margin: "auto",
+    background: "white",
+    borderRadius: "25px"
+  },
+  header: { margin: "20px" },
+  submitButton: {
+    marginTop: "3vh",
+    width: "150px",
+    height: "45px"
+  }
+};
 const Widget = () => {
   // settings
   const DISPLAY_TIME = 30;
@@ -28,32 +56,9 @@ const Widget = () => {
   return (
     <div>
       {showWidget ? (
-        <div
-          style={{
-            position: "fixed",
-            width: "100%",
-            height: "100%",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            margin: "auto",
-            backgroundColor: "rgba(0, 0, 0, 0.5)"
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              left: "10%",
-              right: "10%",
-              top: "10%",
-              bottom: "10%",
-              margin: "auto",
-              background: "white",
-              borderRadius: "25px"
-            }}
-          >
-            <div style={{ margin: "20px" }}>
+        <div style={style.background}>
+          <div style={style.foreground}>
+            <div style={style.header}>
               <Progress percent={timer * MULTIPLY_FACTOR} showInfo={false} />
               <Title level={2} style={{ marginTop: "30px" }}>
                 Select all the images that contain coffee cups
@@ -98,18 +103,12 @@ const Widget = () => {
                   </tbody>
                 </table>
               </center>
-              <div>
-                <Button
-                  type="primary"
-                  style={{
-                    marginTop: "5vh",
-                    width: "150px",
-                    height: "45px"
-                  }}
-                >
-                  Submit
-                </Button>
-              </div>
+              <Button type="primary" style={style.submitButton}>
+                Submit
+              </Button>
+              <Paragraph style={{ marginTop: "7vh" }}>
+                ©2020 Lambda AI | Made with ❤️ in Philly
+              </Paragraph>
             </div>
           </div>
         </div>
