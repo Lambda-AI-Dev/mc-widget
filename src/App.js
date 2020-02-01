@@ -23,7 +23,7 @@ function App() {
       >
         Click me
       </Button>
-      {widgetOn ? <Widget setWidgetOn={setWidgetOn} /> : null}
+      <Widget />
     </div>
   );
 }
