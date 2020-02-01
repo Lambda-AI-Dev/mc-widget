@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ImageGrid from "./ImageGrid";
 import style from "./WidgetStyle";
+import test_imgs from "./TestImg";
 import "@lottiefiles/lottie-player";
 import { Button, Typography, Progress } from "antd";
-const { Title, Paragraph } = Typography;
+const { Title, Text } = Typography;
 
 const Widget = () => {
   // settings
   const DISPLAY_TIME = 30 * 10; // 30 Seconds
   const MULTIPLY_FACTOR = 100.0 / DISPLAY_TIME;
-  const TEST_IMG =
-    "https://images.unsplash.com/photo-1519098901909-b1553a1190af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80";
   const CHECK_IMG =
     "https://assets4.lottiefiles.com/datafiles/uoZvuyyqr04CpMr/data.json";
 
@@ -35,7 +34,7 @@ const Widget = () => {
     if (showSuccess) {
       setTimeout(() => {
         setShowWidget(false);
-      }, 1900);
+      }, 1300);
     }
   }, [showSuccess]);
 
@@ -61,11 +60,14 @@ const Widget = () => {
                   status="active"
                 />
                 <Title level={2} style={{ marginTop: "30px" }}>
-                  Select all image that contain coffee cup
+                  Select all images that contain Coffee
                 </Title>
+                <Text>
+                  Click <b>Verify</b> once there are none left
+                </Text>
 
-                <center style={{ marginTop: "5vh" }}>
-                  <ImageGrid testImg={TEST_IMG}></ImageGrid>
+                <center style={{ marginTop: "20px" }}>
+                  <ImageGrid testImgs={test_imgs}></ImageGrid>
                 </center>
                 <Button
                   type="primary"
@@ -74,16 +76,16 @@ const Widget = () => {
                     setShowSuccess(true);
                   }}
                 >
-                  Submit
+                  Verify
                 </Button>
                 <center>
-                  <Paragraph style={style.footer}>
+                  <Text style={style.footer}>
                     ©2020{" "}
                     <a href="https://lambdaai.dev/" target="_blank">
                       Lambda AI
                     </a>{" "}
                     | Made with ❤️ in Philly
-                  </Paragraph>
+                  </Text>
                 </center>
               </div>
             )}

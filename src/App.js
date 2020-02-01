@@ -7,21 +7,16 @@ import Widget from "./lambda-ai/Widget";
 const { Title, Text } = Typography;
 
 function App() {
-  const [widgetOn, setWidgetOn] = useState(true);
-
   return (
     <div style={{ margin: "10vh", textAlign: "center" }}>
-      <Title level={1}>My really fun game!</Title>
-      <Text>Click on the below to activate Lambda AI Widget</Text>
+      <Title level={1}>Lambda AI Demo</Title>
+      <Text>
+        We democratize AI by solving one of its biggest challenges: access to
+        affordable labeled data.
+      </Text>
       <br />
-      <Button
-        type="primary"
-        style={{ margin: "20px" }}
-        onClick={() => {
-          setWidgetOn(true);
-        }}
-      >
-        Click me
+      <Button type="primary" style={{ margin: "20px" }} onClick={() => {}}>
+        Learn More
       </Button>
       <Widget />
     </div>
