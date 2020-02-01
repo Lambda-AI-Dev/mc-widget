@@ -12,11 +12,17 @@ function App() {
       <Title level={1}>Lambda AI Demo</Title>
       <Text>
         We democratize AI by solving one of its biggest challenges: access to
-        affordable labeled data.
+        affordable labeled data. <a href="www.lambdaai.dev">Learn More</a>
       </Text>
       <br />
-      <Button type="primary" style={{ margin: "20px" }} onClick={() => {}}>
-        Learn More
+      <Button
+        type="primary"
+        style={{ margin: "20px" }}
+        onClick={() => {
+          window.location.reload();
+        }}
+      >
+        Start Demo
       </Button>
       <Widget />
     </div>
