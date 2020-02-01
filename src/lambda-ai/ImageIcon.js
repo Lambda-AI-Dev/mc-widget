@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Typography, Icon } from "antd";
+import { Icon } from "antd";
 
 const ImageIcon = ({ url }) => {
   let [clicked, setClicked] = useState(false);
