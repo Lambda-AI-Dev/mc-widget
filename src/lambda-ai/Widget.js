@@ -78,7 +78,11 @@ const Widget = () => {
                 </Button>
                 <center>
                   <Paragraph style={style.footer}>
-                    ©2020 Lambda AI | Made with ❤️ in Philly
+                    ©2020{" "}
+                    <a href="https://lambdaai.dev/" target="_blank">
+                      Lambda AI
+                    </a>{" "}
+                    | Made with ❤️ in Philly
                   </Paragraph>
                 </center>
               </div>
