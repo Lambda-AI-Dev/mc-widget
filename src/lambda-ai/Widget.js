@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import ImageGrid from "./ImageGrid";
 import style from "./WidgetStyle";
-import test_imgs from "./TestImg";
+import MCButton from "./MCButton";
 import "@lottiefiles/lottie-player";
-import { Button, Typography, Progress } from "antd";
+import ScrollLock, { TouchScrollable } from "react-scrolllock";
+import { Button, Typography, Progress, Row, Col } from "antd";
+import { data } from "./fake_data";
+import MCList from "./MCList";
 const { Title, Text } = Typography;
 
 const Widget = () => {
@@ -23,7 +25,7 @@ const Widget = () => {
       setTimer(timer--);
       if (timer === 0) {
         if (!showSuccess) {
-          setShowWidget(false);
+          //setShowWidget(false);
         }
         clearInterval(countDown);
       }
@@ -40,58 +42,73 @@ const Widget = () => {
 
   return (
     <div>
-      {showWidget ? (
-        <div style={style.background}>
-          <div style={style.foreground}>
-            {showSuccess ? (
-              <div>
-                <lottie-player
-                  autoplay
-                  mode="normal"
-                  src={CHECK_IMG}
-                  style={style.successAnimation}
-                ></lottie-player>
-              </div>
-            ) : (
-              <div style={style.header}>
-                <Progress
-                  percent={timer * MULTIPLY_FACTOR}
-                  showInfo={false}
-                  status="active"
-                />
-                <Title level={2} style={{ marginTop: "30px" }}>
-                  Select all images that contain Coffee
-                </Title>
-                <Text>
-                  Click <b>Verify</b> once there are none left
-                </Text>
+      <ScrollLock isActive={showWidget}>
+        {showWidget ? (
+          <div style={style.background}>
+            <div style={style.foreground}>
+              {showSuccess ? (
+                <div>
+                  <lottie-player
+                    autoplay
+                    mode="normal"
+                    src={CHECK_IMG}
+                    style={style.successAnimation}
+                  ></lottie-player>
+                </div>
+              ) : (
+                <div>
+                  <div style={style.header}>
+                    <Progress
+                      percent={timer * MULTIPLY_FACTOR}
+                      showInfo={false}
+                      status="active"
+                    />
+                  </div>
 
-                <center style={{ marginTop: "20px" }}>
-                  <ImageGrid testImgs={test_imgs}></ImageGrid>
-                </center>
-                <Button
-                  type="primary"
-                  style={style.submitButton}
-                  onClick={() => {
-                    setShowSuccess(true);
-                  }}
-                >
-                  Verify
-                </Button>
-                <center>
-                  <Text style={style.footer}>
-                    ©2020{" "}
-                    <a href="https://lambdaai.dev/" target="_blank">
-                      Lambda AI
-                    </a>{" "}
-                    | Made with ❤️ in Philly
-                  </Text>
-                </center>
-              </div>
-            )}
+                  <center>
+                    <table style={{ marginTop: "30px" }}>
+                      <tr>
+                        <td>
+                          <img
+                            src={data.tasks[0].imageUrl}
+                            style={{ width: "380px", height: "380px" }}
+                          />
+                        </td>
+                        <td>
+                          <MCList data={data} />
+                        </td>
+                      </tr>
+                    </table>
+                    <Button
+                      type="primary"
+                      style={{
+                        width: "140px",
+                        height: "45px",
+                        marginTop: "20px"
+                      }}
+                      onClick={() => {
+                        setShowSuccess(true);
+                      }}
+                    >
+                      Verify
+                    </Button>
+                    <p style={{ marginTop: "35px", color: "#bdc3c7" }}>
+                      Powered by{" "}
+                      <a
+                        href="https://lambdaai.dev/"
+                        target="_blank"
+                        style={{ color: "#7f8c8d" }}
+                      >
+                        Lambda AI
+                      </a>
+                    </p>
+                  </center>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      ) : null}
+        ) : null}
+      </ScrollLock>
     </div>
   );
 };
