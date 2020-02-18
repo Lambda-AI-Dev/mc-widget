@@ -1,20 +1,60 @@
 import React, { useState, useEffect } from "react";
 
-const MCButton = ({ displayText, imageExample, type }) => {
+const MCButton = ({
+  displayText,
+  imageExample,
+  type,
+  index,
+  mcState,
+  setmcState
+}) => {
   const defaultStyle = { bg: "#ecf0f1", text: "black" };
-  const clickedStyle = { bg: "#3498db", text: "white" };
+  const clickedStyle = { bg: "#4091f7", text: "white" };
   const hoverStyle = { bg: "#7f8c8d", text: "white" };
 
-  const [style, setStyle] = useState(defaultStyle);
-  const [clicked, setClick] = useState(false);
+  const parseMCState = () => {
+    if (mcState[index] == 0) return false;
+    else return true;
+  };
 
-  const parseType = () => {
+  const parseNoneType = () => {
     if (type == "none") {
       return true;
     } else {
       return false;
     }
   };
+
+  const handleClick = () => {
+    if (parseNoneType()) {
+      if (parseMCState()) setmcState([0, 0, 0, 0]);
+      else setmcState([0, 0, 0, 1]);
+      return;
+    }
+
+    const newState = mcState;
+    if (parseMCState()) {
+      // released
+      setStyle(hoverStyle);
+      newState[index] = 0;
+    } else {
+      // actual clicked
+      setStyle(clickedStyle);
+      newState[index] = 1;
+    }
+    newState[newState.length - 1] = 0;
+    setmcState(newState);
+  };
+
+  const [style, setStyle] = useState(defaultStyle);
+
+  useEffect(() => {
+    if (parseMCState()) {
+      setStyle(clickedStyle);
+    } else {
+      setStyle(defaultStyle);
+    }
+  }, [mcState[index]]);
 
   return (
     <div
@@ -27,18 +67,16 @@ const MCButton = ({ displayText, imageExample, type }) => {
         outlineStyle: "none"
       }}
       onMouseEnter={() => {
-        if (!clicked) setStyle(hoverStyle);
+        if (!parseMCState()) setStyle(hoverStyle);
       }}
       onMouseLeave={() => {
-        if (!clicked) setStyle(defaultStyle);
+        if (!parseMCState()) setStyle(defaultStyle);
       }}
       onClick={() => {
-        setClick(!clicked);
-        if (clicked) setStyle(hoverStyle);
-        else setStyle(clickedStyle);
+        handleClick();
       }}
     >
-      {parseType() ? (
+      {parseNoneType() ? (
         <div style={{ textAlign: "center", paddingTop: "20px" }}>
           <h3
             style={{

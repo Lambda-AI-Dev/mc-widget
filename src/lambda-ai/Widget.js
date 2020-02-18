@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import style from "./WidgetStyle";
-import MCButton from "./MCButton";
 import "@lottiefiles/lottie-player";
 import ScrollLock, { TouchScrollable } from "react-scrolllock";
 import { Button, Typography, Progress, Row, Col } from "antd";
@@ -19,6 +18,8 @@ const Widget = () => {
   let [timer, setTimer] = useState(DISPLAY_TIME);
   let [showWidget, setShowWidget] = useState(true);
   let [showSuccess, setShowSuccess] = useState(false);
+
+  const [mcState, setmcState] = useState([0, 0, 0, 0]);
 
   useEffect(() => {
     var countDown = setInterval(() => {
@@ -39,6 +40,11 @@ const Widget = () => {
       }, 1300);
     }
   }, [showSuccess]);
+
+  const handleSubmit = () => {
+    console.log(mcState);
+    setShowSuccess(true);
+  };
 
   return (
     <div>
@@ -75,7 +81,11 @@ const Widget = () => {
                           />
                         </td>
                         <td>
-                          <MCList data={data} />
+                          <MCList
+                            data={data}
+                            mcState={mcState}
+                            setmcState={setmcState}
+                          />
                         </td>
                       </tr>
                     </table>
@@ -87,7 +97,7 @@ const Widget = () => {
                         marginTop: "20px"
                       }}
                       onClick={() => {
-                        setShowSuccess(true);
+                        handleSubmit();
                       }}
                     >
                       Verify
